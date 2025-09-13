@@ -8,8 +8,11 @@ services:
       - redis
     ports:
       - "8081:80"
-    volumes:
-      - ./:/var/www
+    develop:
+      watch:
+        - path: ./
+          target: /var/www
+          action: sync # sync, sync + restart, rebuild
 
   redis:
     platform: linux/x86_64
