@@ -13,6 +13,8 @@ services:
         - path: ./
           target: /var/www
           action: sync # sync, sync + restart, rebuild
+          ignore:
+            - vendor/        
 
   redis:
     platform: linux/x86_64
