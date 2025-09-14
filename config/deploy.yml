@@ -2,7 +2,7 @@
 service: my-app
 
 # Name of the container image.
-image: my-user/my-app
+image: jvelascoiti/contador-visitas
 
 # Deploy to these servers.
 servers:
