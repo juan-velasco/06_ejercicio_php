@@ -9,8 +9,7 @@ $app = AppFactory::create();
 $redis = new RedisClient([
     'scheme' => 'tcp',
     'host' => getenv('REDIS_HOST') ?: 'redis',
-    'port' => 6379,
-    'password' => 'zb8qSB9UM8SG9TtP5c5TwtDYmW',
+    'port' => 6379
 ]);
 
 
