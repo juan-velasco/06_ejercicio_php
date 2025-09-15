@@ -97,5 +97,8 @@ accessories:
     image: redis
     host: 164.92.221.129
     port: 6379
+    cmd: "redis-server --requirepass 4de43fGfc&zb8qSB9UM8SG9TtP5c5TwtDYmW"
+    options:
+      network: "private"    
     directories:
       - data:/data
