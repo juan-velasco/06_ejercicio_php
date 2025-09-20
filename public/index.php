@@ -3,6 +3,9 @@ require '../vendor/autoload.php';
 
 use Slim\Factory\AppFactory;
 use Predis\Client as RedisClient;
+use Slim\Exception\HttpNotFoundException;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
 $app = AppFactory::create();
 
@@ -35,5 +38,22 @@ $app->get('/up', function ($request, $response, $args) {
 });
 
 
+// Manejador para rutas no encontradas (404)
+$app->addRoutingMiddleware();
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+$errorMiddleware->setErrorHandler(
+    HttpNotFoundException::class,
+    function (
+        Request $request,
+        Throwable $exception,
+        bool $displayErrorDetails,
+        bool $logErrors,
+        bool $logErrorDetails
+    ) use ($app) {
+        $response = $app->getResponseFactory()->createResponse();
+        $response->getBody()->write('404 - Página no encontrada');
+        return $response->withStatus(404);
+    }
+);
 
 $app->run();
