@@ -28,4 +28,12 @@ $app->get('/', function ($request, $response, $args) use ($twig, $redis) {
     ]);
 });
 
+// Ruta /up devuelve 200 OK
+$app->get('/up', function ($request, $response, $args) {
+    $response->getBody()->write("OK");
+    return $response->withStatus(200);
+});
+
+
+
 $app->run();
